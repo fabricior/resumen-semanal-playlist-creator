@@ -6,7 +6,7 @@ scopes = ["https://www.googleapis.com/auth/youtube.readonly"]
 
      
 
-def get_video_info(youtube_api, videoId: str = 'ywRiAQuM65U'):
+def get_video_info(youtube_api, videoId: str):
 
     def fetch_from_youtube():        
         request = youtube_api.videos().list(

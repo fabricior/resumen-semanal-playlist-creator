@@ -48,35 +48,28 @@ def _classify_section_parts(section: str) -> dict:
 
     return { 'sectionTitle': sectionTitle, 'links_and_descriptions': links_and_descriptions }
 
-def process(response : dict) -> dict:
+def _process_raw(response : dict) -> dict:
     description = _extract_description_rom(response)
     sections = _extract_sections_from(description)
     final_sections = map(_classify_section_parts, sections) 
     return final_sections
 
-##### TEST CODE - REMOVE
+def add_all_videos_to_playlist(resumen_semanal_video_id: str, playlist_id: str):
+    youtube_api = get_authenticated_youtube_api()
+    resumen_semanal_video_info = get_video_info(youtube_api, resumen_semanal_video_id)        
+    print('\n' * 5)
+    sections = _process_raw(resumen_semanal_video_info)
+    for section in sections:    
+        print('\n=========================================================\n')
+        print(section.get('sectionTitle'))
+        print('\n=========================================================\n')
+        for x in section.get('links_and_descriptions'):
+            print('\n\t-----------------------------------------------------\n')
+            print('\t' + x.get('description'))
+            for y in x.get('video_links'):
+                print('\t' + y.get('link'))
+                add_video_playlist(youtube_api, playlist_id, y.get('video_id'))
 
-playlist_id = 'PLidK0Jb0r6CKuC9aUEaY7ZnB2KLHLygXN'
-
-
-youtube_api = get_authenticated_youtube_api()
-video_info = get_video_info(youtube_api)
-
-print('\n' * 5)
-print(video_info)
-print('\n' * 5)
-sections = process(video_info)
-for section in sections:    
-    print('\n=========================================================\n')
-    print(section.get('sectionTitle'))
-    print('\n=========================================================\n')
-    for x in section.get('links_and_descriptions'):
-        print('\n\t-----------------------------------------------------\n')
-        print('\t' + x.get('description'))
-        for y in x.get('video_links'):
-            print('\t' + y.get('link'))
-            add_video_playlist(youtube_api, playlist_id, y.get('video_id'))
-##### TEST CODE - REMOVE    
 
 
 
