@@ -1,10 +1,10 @@
 from videoInfoFetcher import get_video_info, get_video_info_from_dummy
 
-def _extractDescriptionFrom(response: dict) -> str:
+def _extract_description_rom(response: dict) -> str:
     desc = response['items'][0]['snippet']['description']
     return desc
 
-def _extractSectionsFrom(description: str) -> list:
+def _extract_sections_from(description: str) -> list:
     import re
     # Last section is not matched. Assuming it is "Grand Finale" so it is fine to not include it.
     result = re.findall(r"([0-9][0-9]:[0-5][0-9].+?(?=[0-9][0-9]:[0-5][0-9]))", description, re.DOTALL)
@@ -14,7 +14,7 @@ def _extractSectionsFrom(description: str) -> list:
 
     return result
 
-def _classifySectionParts(section: str) -> dict:
+def _classify_section_parts(section: str) -> dict:
     lines =  [x for x in section.split('\n') if x]
 
     title = lines[0]
@@ -24,9 +24,9 @@ def _classifySectionParts(section: str) -> dict:
     return { 'sectionTitle': title, 'videoDescription': video_description, 'link': youtube_link  }
 
 def process(response : dict) -> dict:
-    description = _extractDescriptionFrom(response)
-    sections = _extractSectionsFrom(description)
-    final_sections = map(_classifySectionParts, sections) 
+    description = _extract_description_rom(response)
+    sections = _extract_sections_from(description)
+    final_sections = map(_classify_section_parts, sections) 
     return final_sections
 
 ##### TEST CODE - REMOVE
