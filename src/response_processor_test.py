@@ -1,5 +1,5 @@
 from response_processor import _extract_description_rom, _extract_sections_from
-from video_info_fetcher import get_video_info_from_dummy
+from youtube_video_info_fetcher import get_video_info_from_dummy
 
 
 def test_description():

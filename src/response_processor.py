@@ -1,4 +1,4 @@
-from video_info_fetcher import get_video_info, get_video_info_from_dummy
+from youtube_video_info_fetcher import get_video_info, get_video_info_from_dummy
 
 def _extract_description_rom(response: dict) -> str:
     desc = response['items'][0]['snippet']['description']
