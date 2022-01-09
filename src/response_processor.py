@@ -14,14 +14,33 @@ def _extract_sections_from(description: str) -> list:
 
     return result
 
+def _get_section_videos(youtube_links_and_descriptions_raw: list) -> list:
+    
+    def is_you_tube_link(element: str) -> bool:
+        return element.find('youtube.com') != -1 or element.find('youtu.be') != -1
+
+    result = []
+    current_element = { 'video_links': [] }
+
+    for description_or_video in youtube_links_and_descriptions_raw:        
+        if not is_you_tube_link(description_or_video):            
+            if 'description' in current_element:
+                result.append(current_element);                
+                current_element = { 'video_links': [] }
+
+            current_element['description'] = description_or_video
+        else:
+            current_element['video_links'].append(description_or_video)
+
+    return result
+
 def _classify_section_parts(section: str) -> dict:
     lines =  [x for x in section.split('\n') if x]
 
-    title = lines[0]
-    video_description = lines[1]
-    youtube_link = lines[2]
+    sectionTitle = lines[0]
+    links_and_descriptions = _get_section_videos(lines[1:])
 
-    return { 'sectionTitle': title, 'videoDescription': video_description, 'link': youtube_link  }
+    return { 'sectionTitle': sectionTitle, 'links_and_descriptions': links_and_descriptions }
 
 def process(response : dict) -> dict:
     description = _extract_description_rom(response)
@@ -39,7 +58,14 @@ print(video_info)
 print('\n' * 5)
 sections = process(video_info)
 for section in sections:    
-    print(section)
+    print('\n=========================================================\n')
+    print(section.get('sectionTitle'))
+    print('\n=========================================================\n')
+    for x in section.get('links_and_descriptions'):
+        print('\n\t-----------------------------------------------------\n')
+        print('\t' + x.get('description'))
+        for y in x.get('video_links'):
+            print('\t' + y)
 ##### TEST CODE - REMOVE    
 
 
