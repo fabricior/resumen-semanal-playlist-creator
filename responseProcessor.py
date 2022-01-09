@@ -1,4 +1,4 @@
-from responseDumpExample import python_response
+from videoInfoFetcher import get_video_info, get_video_info_from_dummy
 
 def _extractDescriptionFrom(response: dict) -> str:
     desc = response['items'][0]['snippet']['description']
@@ -30,7 +30,15 @@ def process(response : dict) -> dict:
     return final_sections
 
 ##### TEST CODE - REMOVE
-for section in process(python_response()):
+
+# video_info = get_video_info()
+video_info = get_video_info_from_dummy()
+
+print('\n' * 5)
+print(video_info)
+print('\n' * 5)
+sections = process(video_info)
+for section in sections:    
     print(section)
 ##### TEST CODE - REMOVE    
 

@@ -1,9 +1,9 @@
 from responseProcessor import _extractDescriptionFrom, _extractSectionsFrom
-from responseDumpExample import python_response
+from videoInfoFetcher import get_video_info_from_dummy
 
 
 def test_description():
-    response = python_response()
+    response = get_video_info_from_dummy()
     assert _extractDescriptionFrom(response).startswith("Resumen de la semana 41 del año 2021 de FabioTV")
 
 def test_sections():
