@@ -9,6 +9,4 @@ def add_video_playlist(youtube_api, playlistId, videoId):
 
     request = youtube_api.playlistItems().insert(part="snippet", body=body)
 
-    response = request.execute()
-
-    print(response)
+    return request.execute()    
