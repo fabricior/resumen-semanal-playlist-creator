@@ -31,6 +31,8 @@ Dado un video del Resumen Semanal del [canal de youtube de Fabio Baccaglioni](ht
 
 ## El setup propiamente dicho
 
+- Clonar el Repo
+
 - `pip install -r .\requeriments.txt`
 
 - Actualizar `.\YOUR_CLIENT_SECRET_FILE.json` con el contenido del Json que nos bajamos de la consola de Google.
