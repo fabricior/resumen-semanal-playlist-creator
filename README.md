@@ -25,10 +25,6 @@ Dado un video del Resumen Semanal del [canal de youtube de Fabio Baccaglioni](ht
     - Seleccionar el OAuth client recien creado y poner "Download Json". Gaurdar el json que lo vamos a usar en el setup.    
 - Luego tenemos que ir a "OAuth consent screen" y agregar nuestra cuenta como **Test Users**
 
-## Pre-Requisitos de Youtube
-
-- Crear algun **playlist** usando la misma cuenta de google que la que usamos en el paso anterior.
-
 ## El setup propiamente dicho
 
 - Clonar el Repo
