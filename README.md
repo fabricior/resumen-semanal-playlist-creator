@@ -2,6 +2,9 @@
 
 Dado un video del Resumen Semanal del [canal de youtube de Fabio Baccaglioni](https://www.youtube.com/c/FabioBaccaglioni), este *escrí* lee todos los videos que deja Fabio en la descripción y actualiza un playlist tuyo con todos los videos que encuentra.
 
+## Screenshot
+
+![Imagen del un playlist generado](assets/PlaylistExample.png "Title")
 # Setup
 
 ## Pre-Requisitos de Google Cloud
