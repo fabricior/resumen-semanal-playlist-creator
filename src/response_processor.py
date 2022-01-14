@@ -26,18 +26,15 @@ def _get_section_videos(youtube_links_and_descriptions_raw: list) -> list:
         return element.find('youtube.com') != -1 or element.find('youtu.be') != -1
 
     result = []
-    current_element = { 'video_links': [] }
-
+    
     for description_or_video in youtube_links_and_descriptions_raw:        
-        if not is_you_tube_link(description_or_video):            
-            if 'description' in current_element:
-                result.append(current_element);                
-                current_element = { 'video_links': [] }
-
-            current_element['description'] = description_or_video
+        is_description = not is_you_tube_link(description_or_video)
+        if is_description:
+            result_item = { 'video_links': [], 'description': description_or_video }
+            result.append(result_item);                            
         else:
             video_id = _extract_video_id_from_link(description_or_video)            
-            current_element['video_links'].append({ 'link': description_or_video, 'video_id': video_id })
+            result_item['video_links'].append({ 'link': description_or_video, 'video_id': video_id })
 
     return result
 

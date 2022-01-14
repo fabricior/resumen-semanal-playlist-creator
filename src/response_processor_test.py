@@ -1,11 +1,28 @@
-from response_processor import _extract_description_rom, _extract_sections_from
+import pytest
+from response_processor import _extract_description_rom, _extract_sections_from, _get_section_videos, _classify_section_parts
 from youtube_video_info_fetcher import get_video_info_from_dummy
 
 
 def test_description():
     response = get_video_info_from_dummy()
-    assert _extract_description_rom(response).startswith("Resumen de la semana 41 del año 2021 de FabioTV")
+    assert _extract_description_rom(response).startswith(
+        "Resumen de la semana 41 del año 2021 de FabioTV")
+
 
 def test_sections():
     description = 'Resumen de la semana 41 del año 2021 de FabioTV\n#ResumenSemanal #FabioTV #S05E41\n\nEl Resumen Semanal de FabioTV se hace gracias al aporte de los productores y los patreons:\n\nPatreon: https://www.patreon.com/fabiotv\nCafecito: https://cafecito.app/fabiotv\nWeb: https://www.fabio.com.ar\nTwitter: https://twitter.com/fabiomb\nFacebook: https://www.facebook.com/fabio.com.ar\n\nMusica por NCS: https://www.youtube.com/user/NoCopyrightSounds/\n\n00:00 - Intro \n\n01:30 - Cine y Trailers\n\nHypnotic\nhttps://youtu.be/eHsWYmnXk1o\n\nRed Rocket\nhttps://youtu.be/Wfndmy-6e28\n\nOperation Mincemeat\nhttps://youtu.be/naactPCbIgQ\n\nWOLF \nhttps://youtu.be/oG1xjm0GZgQ\n\nAmong the Stars \nhttps://youtu.be/1gvcNY5ywqw\n\nHouse Of The Dragon\nhttps://youtu.be/fNwwt25mheo\n\n03:13 - Actualidad\n\nWhat If We Pave Plastic Trash Into New Roads? \nhttps://youtu.be/iFcPqXxAUWM\n\nEl nuevo terreno que generó el volcán de La Palma\nhttps://youtu.be/OM9R1LwfZDM\n\nhow Many Solar Panels are Needed to Power the ENTIRE World\nhttps://youtu.be/IZEaYjo4ZJU\n\n04:02 - Tech\n\nMoto G60S Review\nhttps://youtu.be/owhpZ2lb2r8\n\nI thought the Schmid Peoplemover was impossible\nhttps://youtu.be/A2g4u9F9i90\n\nSolar Panels Plus Farming? Agrivoltaics Explained\nhttps://youtu.be/lgZBlD-TCFE\n\nPlasma Jets Explained! The FUTURE of Electric Air Travel\nhttps://youtu.be/HetgeOjq5m8\n\nWhy Do Command Lines Still Exist?\nhttps://youtu.be/Q1dwzi5DKio\n\nAxial flux motors - The new hope\nhttps://youtu.be/8EEVPVNJHjM\n\nVintage Camcorder with a Built-in Printer\nhttps://youtu.be/NaXzv7TM5T8\n\nInstalling Windows 3.1 on an iPhone From Floppy Disks!\nhttps://youtu.be/4R3LA4awCCM\n\nMy Go-Bag/Emergency Phone- the Ulefone Power Armor 13\nhttps://youtu.be/_Q_xappAvJw\n\n07:28 - HDP de la semana\n\nDebunking Gun Defence Videos On YT. STOP These Videos!\nhttps://youtu.be/n9Q8ct7PZAU\n\n07:46 - Musica\n\n¿Por qué el tema de James Bond suena a agente secreto?\nhttps://youtu.be/nGIFIP97d-I\n\nEntro en el instrumento MÁS GRANDE del mundo\nhttps://youtu.be/jbCDgoZ8_p8\n\nThe Kiffness x Lalala Dog - Lalala\nhttps://youtu.be/Wcl1Z0bBoBE\n\n08:22 - Humor\n\n3 Cleaning Contraptions: Spill-Drill, Doggy-Mop and more!\nhttps://youtu.be/iQD8H3u7EbA\n\n08:34 - Ciencia y Espacio\n\nLaunch of Manned Soyuz MS-19 With Actress Yulia Peresild and Filmmaker Klim Shipenko\nhttps://youtu.be/M5YMtT-586Y\n\nWhy SpaceX Cares About Concrete\nhttps://youtu.be/gMbUeO4iGhY\n\nWhat Made The Space Shuttle So Easy To Steal?\nhttps://youtu.be/5T6J4Mpf1ls\n\nHow Does The James Webb Space Telescope Work?\nhttps://youtu.be/4P8fKd0IVOs\n\nWhy Magnetic Monopoles SHOULD Exist\nhttps://youtu.be/dw1sekg6SUY\n\nWhy Do Bees Make Rhombic Dodecahedrons?\nhttps://youtu.be/QFj-hF8XDQ0\n\nMETAL in MICROWAVE Oven Is NOT That Dangerous\nhttps://youtu.be/OyTmJX_TC84\n\n11:08 - Videos de la semana\n\nHow to Woodturn the Earth\nhttps://youtu.be/krMWHx0SQvo\n\nCasino Cheating Expert Reviews Card Counting and Casino Scams From Movies \nhttps://youtu.be/ki4Fbctwnjs\n\nChris Sharma\'s Most Spectacular Climb! First Ascent of Es Pontás, Mallorca\nhttps://youtu.be/cM8gO4IDN_s\n\nI tried caving and found out I\'m very bad at caving\nhttps://youtu.be/9KOZUw_Ah8w\n\nI Crawled Through The Tightest Cave In The World\nhttps://youtu.be/i4VNbl5w6Ok\n\nRestoration of a Radioactive WW2 Military Watch\nhttps://youtu.be/OKAjevrcIzk\n\nThe mystery of the "same sky" postcards\nhttps://youtu.be/MgpQXz34bqs\n\n13:19 - Extremo\n\nThe Rolls Royce Merlin: Powering History\'s Most Famous Fighters\nhttps://youtu.be/72tvQrVORNI\n\nThe Panavia Tornado MRCA | The backbone of the RAF for nearly 40 years\nhttps://youtu.be/tr-RscH6IpY\n\nRare Soviet Supersonic Myasishchev M-50 Bounder\nhttps://youtu.be/wYiXQ0RWUBk\n\nWe Built a Street–Legal Electric Motorcycle for $4,000\nhttps://youtu.be/n8gn8MWj_yI\n\nEvery Aston Martin Bond Car Explained\nhttps://youtu.be/53ZVyYimzyc\n\nFirearms Expert Reacts To Counter-Strike Franchise\'s Guns\nhttps://youtu.be/N1ajq6L_k8w\n\n14:55 - Cocina\n\nBinging with Babish: Grits from My Cousin Vinny\nhttps://youtu.be/GbfUeneG0s8\n\nCamote relleno de Pulled Pork\nhttps://youtu.be/M5_XOWN_7tw\n\nItalian Michelin star chef makes Seafood Spaghetti\nhttps://youtu.be/vS6Oh4oh-WA\n\nDon\'t forget the old fashioned macarons\nhttps://youtu.be/vKacPWYvR1g\n\n16:00 - Grand Finale'
     assert len(_extract_sections_from(description)) == 10
+
+def test_classify_section_parts_single_element():
+    input = '02:26 - Cine y Trailers\n\nThe 10 best movies of 2021\nhttps://www.youtube.com/watch?v=jUwg_k_qXg0\n\n'
+    output = _classify_section_parts(input)
+    assert output['sectionTitle'] == '02:26 - Cine y Trailers'
+    assert len(output['links_and_descriptions']) == 1
+    assert output['links_and_descriptions'][0]['video_links'][0]['link'] == 'https://www.youtube.com/watch?v=jUwg_k_qXg0'
+
+def test_classify_section_parts_with_more_than_one_element():
+    input = '02:26 - Cine y Trailers\n\nThe 10 best movies of 2021\nhttps://www.youtube.com/watch?v=jUwg_k_qXg0\n\njackass forever | New Year, New Crew\nhttps://www.youtube.com/watch?v=yGOTX3qN-Dc\n\n'
+    output = _classify_section_parts(input)
+    assert output['sectionTitle'] == '02:26 - Cine y Trailers'
+    assert len(output['links_and_descriptions']) == 2
+    assert output['links_and_descriptions'][0]['video_links'][0]['link'] == 'https://www.youtube.com/watch?v=jUwg_k_qXg0'
