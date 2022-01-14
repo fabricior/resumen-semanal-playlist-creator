@@ -11,9 +11,9 @@ def main():
 
     print('Ahora vamos a necesitar autorizar esta aplicación para que pueda acceder a tus videos de Youtube. Seguí las instrucciones de abajo.\n')
 
-    add_all_videos_to_playlist(resumen_semanal_video_id, playlist_id)
+    playlist_id = add_all_videos_to_playlist(resumen_semanal_video_id, playlist_id)
     
-    print("\nListo! Ya podes mirar el playlist en Youtube.\n")
+    print(f'\nListo! Ya podes mirar el playlist con id "{playlist_id}" en Youtube.\n')
 
 if __name__ == "__main__":
     main()

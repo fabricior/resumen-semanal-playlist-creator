@@ -57,8 +57,9 @@ def add_all_videos_to_playlist(resumen_semanal_video_id: str, playlist_id: str):
 
     if not playlist_id:
         current_date_to_iso_format = datetime.datetime.now().strftime("%Y-%m-%d")
-        new_playist = create_playlist(youtube_api, 'Resumen Semanal ' + current_date_to_iso_format, ' Resumen Semanal' + current_date_to_iso_format, 'private')
-        playlist_id = new_playist['id']
+        playlist_name = 'Resumen Semanal ' + current_date_to_iso_format
+        new_playist = create_playlist(youtube_api, playlist_name , playlist_name, 'private')
+        playlist_id = new_playist['id']        
 
     resumen_semanal_video_info = get_video_info(youtube_api, resumen_semanal_video_id)        
     print('\n' * 5)
@@ -73,6 +74,8 @@ def add_all_videos_to_playlist(resumen_semanal_video_id: str, playlist_id: str):
             for y in x.get('video_links'):
                 print('\t' + y.get('link'))
                 add_video_playlist(youtube_api, playlist_id, y.get('video_id'))
+
+    return playlist_id
 
 
 

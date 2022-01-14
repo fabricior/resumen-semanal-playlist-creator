@@ -39,7 +39,7 @@ Dado un video del Resumen Semanal del [canal de youtube de Fabio Baccaglioni](ht
 
 - Ejecutar `python .\src\main.py` en alguna consola
 
-- Nos va a pedir el id del video del resumen semanal, y el id de nuestro playlist que queremos llenar con los videos de la Descripción que deja Fabio.
+- Nos va a pedir el id del video del resumen semanal, y opcionalmente el id de nuestro playlist que queremos llenar con los videos de la Descripción que deja Fabio. Si no ponemos un playlist Id, crea uno nuevo.
 
 - Luego de eso, tenemos que autorizar la aplicación usando el link que nos va a aparecer en la consola. Autorizar usando la cuenta con la que venimos trabajando, y seguir todas las instrucciones para autorizar.
 
