@@ -25,7 +25,7 @@ Dado un video del Resumen Semanal del [canal de youtube de Fabio Baccaglioni](ht
     - En Scopes - saltear
     - OAuth Client ID
         - Seleccionar "Desktop App" y elegir un nombre cualquiera.
-    - Seleccionar el OAuth client recien creado y poner "Download Json". Gaurdar el json que lo vamos a usar en el setup.    
+    - Seleccionar el OAuth client recien creado y poner "Download Json". Guardar el json que lo vamos a usar en el setup.    
 - Luego tenemos que ir a "OAuth consent screen" y agregar nuestra cuenta como **Test Users**
 
 ## El setup propiamente dicho
@@ -38,7 +38,7 @@ Dado un video del Resumen Semanal del [canal de youtube de Fabio Baccaglioni](ht
     
 - Ejecutar `git update-index --skip-worktree .\YOUR_CLIENT_SECRET_FILE.json` para no hacer commit por error de nuestros secrets.
 
-# Ejectuar
+# Ejecutar
 
 - Ejecutar `python .\src\main.py` en alguna consola
 
