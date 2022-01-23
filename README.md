@@ -1,6 +1,6 @@
 # Qué-lo-que hace este script?
 
-Dado un video del Resumen Semanal del [canal de youtube de Fabio Baccaglioni](https://www.youtube.com/c/FabioBaccaglioni), este *escrí* lee todos los videos que deja Fabio en la descripción y actualiza un playlist tuyo con todos los videos que encuentra.
+Dado un video del Resumen Semanal del [canal de youtube de Fabio Baccaglioni](https://www.youtube.com/c/FabioBaccaglioni), este *escrí* lee todos los videos que deja Fabio en la descripción y crea un playlist en tu cuenta con todos los videos que encuentra. También soporta actualizar un playlist existente.
 
 ## Screenshot
 
