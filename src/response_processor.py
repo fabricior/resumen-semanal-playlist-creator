@@ -18,8 +18,17 @@ def _extract_sections_from(description: str) -> list:
     return result
 
 def _extract_video_id_from_link(link):
-    video_id = re.search(r'(?<=v=)[^&#]+', link).group(0)
-    return video_id
+    # I'm sure there is a way to write a single regex without getting a "look-behind requires fixed-width pattern"
+    # but going with this to fix a bug as quickly as possible
+    match = re.search(r'(?<=v=)[^&#]+', link)
+    if match:
+        return match.group(0)           
+    
+    match = re.search(r'(?<=youtu\.be\/)[^&#]+', link)
+    if match:
+        return match.group(0)           
+            
+    raise Exception('No video id found in link. Format might have changed or it is unsupported:' + link)
 
 def _get_section_videos(youtube_links_and_descriptions_raw: list) -> list:    
     def is_you_tube_link(element: str) -> bool:
