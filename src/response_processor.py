@@ -34,9 +34,15 @@ def _get_section_videos(youtube_links_and_descriptions_raw: list) -> list:
     def is_you_tube_link(element: str) -> bool:
         return element.find('youtube.com') != -1 or element.find('youtu.be') != -1
 
+    def is_vimeo_link(element: str) -> bool:
+        return element.find('vimeo.com') != -1
+
     result = []
     
-    for description_or_video in youtube_links_and_descriptions_raw:        
+    for description_or_video in youtube_links_and_descriptions_raw:
+        if is_vimeo_link(description_or_video):            
+            continue        
+        
         is_description = not is_you_tube_link(description_or_video)
         if is_description:
             result_item = { 'video_links': [], 'description': description_or_video }
@@ -70,7 +76,7 @@ def add_all_videos_to_playlist(resumen_semanal_video_id: str, playlist_id: str):
         new_playist = create_playlist(youtube_api, playlist_name , playlist_name, 'private')
         playlist_id = new_playist['id']        
 
-    resumen_semanal_video_info = get_video_info(youtube_api, resumen_semanal_video_id)        
+    resumen_semanal_video_info = get_video_info(youtube_api, resumen_semanal_video_id)
     print('\n' * 5)
     sections = _process_raw(resumen_semanal_video_info)
     for section in sections:    
