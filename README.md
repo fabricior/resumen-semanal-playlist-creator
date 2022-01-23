@@ -36,7 +36,7 @@ Dado un video del Resumen Semanal del [canal de youtube de Fabio Baccaglioni](ht
 
 - Actualizar `.\YOUR_CLIENT_SECRET_FILE.json` con el contenido del Json que nos bajamos de la consola de Google.
     
-- Ejecutar `git update-index --skip-worktree .\YOUR_CLIENT_SECRET_FILE.json` para no hacer commit por error de nuestros secrets.
+- [Paso Opcional] Ejecutar `git update-index --skip-worktree .\YOUR_CLIENT_SECRET_FILE.json` para no hacer commit por error de nuestros secrets.
 
 # Ejecutar
 
